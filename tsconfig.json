@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "declaration": false,
+    "strict": true,
+    "sourceMap": true,
+    "lib": ["es6", "dom"]
+  },
+  "types": [
+    "webpack-env"
+  ],
+  "files": [
+    "src/index.ts",
+      "src/serializers.ts",
+      "src/compression.ts",
+      "src/widgets.ts",
+      "src/types.d.ts"
+  ]
+}

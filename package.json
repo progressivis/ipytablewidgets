@@ -1,0 +1,38 @@
+{
+  "name": "ipytablewidgets",
+  "version": "0.1.0",
+  "description": "'A Custom Jupyter Widget Library for Table-alike Data Transfer'",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/progressivis/ipytablewidgets.git"
+  },
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/progressivis/ipytablewidgets/issues"
+  },
+  "homepage": "https://github.com/progressivis/ipytablewidgets/#readme",
+  "scripts": {
+    "format": "prettier --write 'src/*.ts'",
+    "lint": "prettier --check 'src/*.ts'",
+    "build": "webpack --mode production",
+    "watch": "webpack --mode development --watch"
+  },
+  "dependencies": {
+    "@jupyter-widgets/base": "4.0.0",
+    "lz4js": "^0.2.0",
+    "ndarray": "^1.0.19",
+    "pako": "^2.0.3"
+  },
+  "devDependencies": {
+    "@types/ndarray": "^1.0.9",
+    "@types/pako": "^1.0.1",
+    "@types/webpack-env": "*",
+    "prettier": "^2.3.0",
+    "ts-loader": "^9.2.2",
+    "typescript": "^4.3.2",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0"
+  },
+  "private": true
+}

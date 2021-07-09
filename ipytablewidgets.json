@@ -1,0 +1,5 @@
+{
+  "load_extensions": {
+    "ipytablewidgets/extension": true
+  }
+}

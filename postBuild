@@ -1,0 +1,7 @@
+set -ex
+# conda env create -f environment.yml
+# conda remove --name ipytablewidgets --all
+conda deactivate || null
+conda activate ipytablewidgets
+jupyter nbextension install --py --symlink --sys-prefix ipytablewidgets
+jupyter nbextension enable --py --sys-prefix ipytablewidgets
