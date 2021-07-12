@@ -3,7 +3,8 @@
     "target": "es6",
     "module": "commonjs",
     "moduleResolution": "node",
-    "declaration": false,
+    "declaration": true,
+      "outDir": "ipytablewidgets/static",
     "strict": true,
     "sourceMap": true,
     "lib": ["es6", "dom"]

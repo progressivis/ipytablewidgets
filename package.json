@@ -8,6 +8,7 @@
   },
   "author": "",
   "license": "",
+    "main": "ipytablewidgets/static/index",
   "bugs": {
     "url": "https://github.com/progressivis/ipytablewidgets/issues"
   },

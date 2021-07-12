@@ -1,6 +1,6 @@
 import numpy as np
 import json
-from .. import SourceAdapter
+from .source_adapter import SourceAdapter
 from .compressors import DEFAULT_COMPRESSORS, BaseCompressor
 
 def array_to_json(value):
