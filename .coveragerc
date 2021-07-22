@@ -1,0 +1,5 @@
+[run]
+omit = ipytablewidgets/tests/*
+
+[report]
+omit = ipytablewidgets/tests/*
