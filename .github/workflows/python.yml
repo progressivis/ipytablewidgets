@@ -36,9 +36,6 @@ jobs:
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate ipytablewidgets
-        echo `conda list`
-        echo `which conda`
-        echo `which pytest`
         coverage run -m pytest ipytablewidgets/tests -vv
 
     - name: Coverage
