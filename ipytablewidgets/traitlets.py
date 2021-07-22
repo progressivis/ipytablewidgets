@@ -14,14 +14,10 @@ class TableType(SciType):
     klass = SourceAdapter
 
     def validate(self, obj, value):
-        if value is None or value is Undefined:
-            return super().validate(obj, value)
-        # if not isinstance(default_value, self.klass):
-        #    self.error(obj, value)
+        assert value is None or isinstance(value, SourceAdapter)
         return super().validate(obj, value)
 
     def set(self, obj, value):
-        # print("@set", obj, value)
         new_value = self._validate(obj, value)
         old_value = obj._trait_values.get(self.name, self.default_value)
         obj._trait_values[self.name] = new_value

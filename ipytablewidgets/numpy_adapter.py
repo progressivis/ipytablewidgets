@@ -17,7 +17,7 @@ class NumpyAdapter(SourceAdapter):
 
     @property
     def columns(self):
-        return self._columns or self._source.keys()
+        return self._columns or list(self._source.keys())
 
     def to_array(self, col):
         return self._source[col]

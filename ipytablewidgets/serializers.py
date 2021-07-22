@@ -39,7 +39,7 @@ def col_to_json(value, compression):
     if compression is None:
         return json_
     arr = json_.get("buffer")
-    if value.dtype == object or value.dtype == str:
+    if value.dtype == object or value.dtype == str or value.dtype.name.startswith('str'):
         arr = json.dumps(arr).encode()
     json_["buffer"] = compression.compress(arr)
     json_["compression"] = compression.name
@@ -54,6 +54,7 @@ def _expand_compressors(compr_dict):
         else:
             assert v is None or isinstance(v, BaseCompressor)
             res[k] = v
+    return res
 
 
 def table_to_json(value, widget):

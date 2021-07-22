@@ -9,7 +9,7 @@ class PandasAdapter(SourceAdapter):
 
     @property
     def columns(self):
-        return self._columns or self._source.columns
+        return self._columns or self._source.columns.tolist()
 
     def to_array(self, col):
         return self._source[col].to_numpy()
@@ -17,13 +17,6 @@ class PandasAdapter(SourceAdapter):
     def equals(self, other):
         if isinstance(other, SourceAdapter):
             other = other._source
-        assert isinstance(other, pd.DataFrame)
+        if not isinstance(other, pd.DataFrame):
+            other = pd.DataFrame(other)
         return self._source.equals(other)
-
-
-"""
-    @classmethod
-    def create(cls, data):
-        df = pd.DataFrame(data)
-        return PandasAdapter(df)
-"""
