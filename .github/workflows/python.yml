@@ -35,7 +35,7 @@ jobs:
 
     - name: Run tests
       run: |
-        conda activate ipytablewidgets
+        source activate ipytablewidgets
         cd ${{ runner.temp }}
         py.test -l --cov-report xml:coverage.xml --cov=ipytablewidgets --pyargs ipytablewidgets
         cd ${{ github.workspace }}
