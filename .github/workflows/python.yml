@@ -40,12 +40,7 @@ jobs:
         echo `which conda`
         echo `which pytest`
         coverage run -m pytest ipytablewidgets/tests -vv
-        coverage report -m
-        #cd ${{ runner.temp }}
-        #pytest -l --cov-report xml:coverage.xml --cov=ipytablewidgets --pyargs ipytablewidgets
-        #cd ${{ github.workspace }}
 
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1
-      with:
-        files: ${{ runner.temp }}/coverage.xml,${{ runner.temp }}/coverage-nbval.xml
+    - name: Coverage
+      run: |
+        coverage report -m
