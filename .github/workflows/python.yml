@@ -29,9 +29,8 @@ jobs:
       uses: conda-incubator/setup-miniconda@v2
       with:
         channels: conda-forge, anaconda
-        activate-environment: ipytablewidgets
     - name: Create the conda environment
-      run: test -d  /usr/share/miniconda/envs/ipytablewidgets || conda env create -q python=${{ matrix.python_version }} -f environment.yml
+      run: conda env create -q python=${{ matrix.python_version }} -f environment.yml
 
     - name: Run tests
       run: |
