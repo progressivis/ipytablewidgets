@@ -39,9 +39,11 @@ jobs:
         echo `conda list`
         echo `which conda`
         echo `which pytest`
-        cd ${{ runner.temp }}
-        pytest -l --cov-report xml:coverage.xml --cov=ipytablewidgets --pyargs ipytablewidgets
-        cd ${{ github.workspace }}
+	coverage run -m pytest ipytablewidgets/tests -vv
+	coverage report -m
+        #cd ${{ runner.temp }}
+        #pytest -l --cov-report xml:coverage.xml --cov=ipytablewidgets --pyargs ipytablewidgets
+        #cd ${{ github.workspace }}
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
