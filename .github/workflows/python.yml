@@ -1,0 +1,45 @@
+name: Python Tests for ipytablewidgets
+
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
+
+jobs:
+  run:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        python_version: [3.8, 3.9]
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup conda
+      uses: conda-incubator/setup-miniconda@v2
+      with:
+        channels: conda-forge, anaconda
+
+    - name: Create the conda environment
+      run: conda env create -q python=${{ matrix.python_version }} -f environment.yml
+
+    - name: Run tests
+      run: |
+        cd ${{ runner.temp }}
+        py.test -l --cov-report xml:coverage.xml --cov=ipytablewidgets --pyargs ipytablewidgets
+        cd ${{ github.workspace }}
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        files: ${{ runner.temp }}/coverage.xml,${{ runner.temp }}/coverage-nbval.xml
