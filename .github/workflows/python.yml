@@ -35,7 +35,8 @@ jobs:
 
     - name: Run tests
       run: |
-        source activate ipytablewidgets
+        source /usr/share/miniconda/etc/profile.d/conda.sh
+        conda activate ipytablewidgets
         cd ${{ runner.temp }}
         py.test -l --cov-report xml:coverage.xml --cov=ipytablewidgets --pyargs ipytablewidgets
         cd ${{ github.workspace }}
