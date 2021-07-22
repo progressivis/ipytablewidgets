@@ -31,7 +31,7 @@ jobs:
         channels: conda-forge, anaconda
         activate-environment: ipytablewidgets
     - name: Create the conda environment
-      run: conda test -d  /usr/share/miniconda/envs/ipytablewidgets || env create -q python=${{ matrix.python_version }} -f environment.yml
+      run: test -d  /usr/share/miniconda/envs/ipytablewidgets || conda env create -q python=${{ matrix.python_version }} -f environment.yml
 
     - name: Run tests
       run: |
