@@ -43,4 +43,6 @@ jobs:
 
     - name: Coverage
       run: |
+        source /usr/share/miniconda/etc/profile.d/conda.sh
+        conda activate ipytablewidgets      
         coverage report -m
