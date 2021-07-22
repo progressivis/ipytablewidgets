@@ -37,8 +37,10 @@ jobs:
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate ipytablewidgets
+        echo `which conda`
+        echo `which pytest`
         cd ${{ runner.temp }}
-        py.test -l --cov-report xml:coverage.xml --cov=ipytablewidgets --pyargs ipytablewidgets
+        pytest -l --cov-report xml:coverage.xml --cov=ipytablewidgets --pyargs ipytablewidgets
         cd ${{ github.workspace }}
 
     - name: Upload coverage to Codecov
