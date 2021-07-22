@@ -37,6 +37,7 @@ jobs:
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate ipytablewidgets
+        echo `conda info`
         echo `which conda`
         echo `which pytest`
         cd ${{ runner.temp }}
