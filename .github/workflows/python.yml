@@ -3,10 +3,10 @@ name: Python Tests for ipytablewidgets
 on:
   push:
     branches:
-    - master
+    - main
   pull_request:
     branches:
-    - master
+    - main
 
 jobs:
   run:
