@@ -1,0 +1,36 @@
+name: Client side Tests
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+jobs:
+  run:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup conda
+      uses: conda-incubator/setup-miniconda@v2
+      with:
+        channels: conda-forge, anaconda
+    - name: Create the conda environment
+      run: conda env create -q python=${{ matrix.python_version }} -f environment.yml
+
+    - name: Run tests
+      run: |
+        npm run test:ci

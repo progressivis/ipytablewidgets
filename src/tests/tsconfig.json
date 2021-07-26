@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "noImplicitAny": true,
+      "lib": ["es6", "dom"],
+    "noEmitOnError": true,
+    "strict": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "ES6",
+    "outDir": "../build",
+    "skipLibCheck": true,
+    "sourceMap": true
+  },
+  "include": [
+    "../**/*.ts",
+  ],
+ 
+}
