@@ -1,4 +1,4 @@
-name: Python Tests for ipytablewidgets
+name: Python Tests
 
 on:
   push:

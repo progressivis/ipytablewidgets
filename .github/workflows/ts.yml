@@ -1,4 +1,4 @@
-name: Client side Tests
+name: Typescript Tests
 
 on:
   push:
