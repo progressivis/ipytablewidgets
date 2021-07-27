@@ -1,4 +1,9 @@
 # ipytablewidgets
+
+![Python tests](https://github.com/progressivis/ipytablewidgets/actions/workflows/python.yml/badge.svg)
+
+![Typescript tests](https://github.com/progressivis/ipytablewidgets/actions/workflows/ts.yml/badge.svg)
+
 Traitlets and widgets to efficiently data tables (e.g. Pandas DataFrame) using the jupyter notebook
 
 
