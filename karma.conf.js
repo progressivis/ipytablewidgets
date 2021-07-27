@@ -2,17 +2,18 @@ module.exports = function (config) {
   config.set({
     basePath: '.',
     frameworks: ['mocha', 'karma-typescript'],
-    reporters: ['mocha', 'karma-typescript'],
+      reporters: ['mocha', 'karma-typescript', 'coverage'],
     client: {
       mocha: {
-        timeout : 15000, 
+        timeout : 15000,
         retries: 3
       }
     },
     files: [ { pattern: "src/**/*.ts" }],
-    exclude: ["src/types.d.ts"], 
+      exclude: ["src/types.d.ts"],
     preprocessors: {
-      '**/*.ts': ['karma-typescript']
+	'src/*.ts': ['karma-typescript', 'coverage'],
+	'src/tests/*.ts': ['karma-typescript']
     },
     browserNoActivityTimeout: 30000,
     port: 9876,

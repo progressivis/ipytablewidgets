@@ -96,7 +96,10 @@ function JSONToTable(obj: IReceivedSerializedTable | null, manager?: ManagerBase
 }
 
 export
-function rowProxy(table: ISendSerializedTable):any {
+function rowProxy(table: ISendSerializedTable|null):any {
+    if (table === null) {
+        return null;
+    }
     var fields: string[] = table.columns;
     var proto: any = {};
 
