@@ -35,6 +35,13 @@ module.exports = [
       path: outputPath,
       libraryTarget: outputLibraryTarget
     },
+  Object.assign({}, commonConfig, {
+    entry: "./src/extension.ts",
+    output: {
+      filename: "extension.js",
+      path: outputPath,
+      libraryTarget: outputLibraryTarget
+    },
     externals: {
       "@jupyter-widgets/base": "@jupyter-widgets/base",
       "./index": "nbextensions/jupyter-tablewidgets/index"
