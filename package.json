@@ -1,5 +1,5 @@
 {
-  "name": "ipytablewidgets",
+  "name": "jupyter-tablewidgets",
   "version": "0.1.0",
   "description": "'A Custom Jupyter Widget Library for Table-alike Data Transfer'",
   "repository": {
@@ -28,6 +28,7 @@
     "@jupyter-widgets/base": "4.0.0",
     "lz4js": "^0.2.0",
     "ndarray": "^1.0.19",
+    "ndarray-unpack": "^1.0.0",
     "pako": "^2.0.3"
   },
   "devDependencies": {

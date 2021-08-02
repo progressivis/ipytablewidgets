@@ -18,4 +18,5 @@ dependencies:
   - pytest
   - pytest-cov
   - pip:
+      - nbmake
       - -e .

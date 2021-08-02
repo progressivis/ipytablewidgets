@@ -3,7 +3,7 @@ import { decompress } from "./compression";
 type NdArray =  ndarray.NdArray;
 
 import {
-  WidgetModel, ManagerBase
+  WidgetModel, ManagerBase, unpack_models
 } from '@jupyter-widgets/base';
 
 export
@@ -52,9 +52,18 @@ interface ISendSerializedTable {
 
 export
 function JSONToTable(obj: IReceivedSerializedTable | null, manager?: ManagerBase<any>): ISendSerializedTable | null {
+  console.log("obj", obj);
   if (obj === null) {
     return null;
   }
+  /*if (typeof obj === 'string') {
+    const modelPromise = unpack_models(obj, manager!) as Promise<WidgetModel>;
+    console.log("modelPromise", modelPromise);
+    return modelPromise;
+   }*/
+  console.log("obj2", obj);
+  console.log("obj2 typeof", (typeof obj));
+  //console.log("obj2._table", obj._table);
   // obj is {shape: list, dtype: string, array: DataView}
   // return an ndarray object
   // console.log("OBJ", obj);
@@ -115,7 +124,7 @@ function rowProxy(table: ISendSerializedTable|null):any {
             Object.defineProperty(proto, name, {
                 get: function():any {
                     const i:number = (this[RowIndex] as number)
-                    return stringcolumn[i];                
+                    return stringcolumn[i];
                 },
                 set: function() {
                     throw Error('Arrow field values can not be overwritten.');

@@ -2,6 +2,7 @@ import numpy as np
 import json
 from .source_adapter import SourceAdapter
 from .compressors import DEFAULT_COMPRESSORS, BaseCompressor
+from ipywidgets import widget_serialization, Widget
 
 def array_to_json(value):
     """
@@ -56,11 +57,11 @@ def _expand_compressors(compr_dict):
             res[k] = v
     return res
 
-
 def table_to_json(value, widget):
     if value is None:
         return None
-    _ = widget
+    if isinstance(value, Widget):
+        return widget_serialization['to_json'](value, widget)
     assert isinstance(value, SourceAdapter)
     compression = value._compression or widget.compression
     if isinstance(compression, dict): # column specific compressors

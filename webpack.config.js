@@ -22,22 +22,22 @@ module.exports = [
     entry: "./src/index.ts",
     output: {
       filename: "index.js",
-      library: "nbextensions/ipytablewidgets/index",
+      library: "nbextensions/jupyter-tablewidgets/index",
       path: outputPath,
       libraryTarget: outputLibraryTarget
     }
   }),
-  // the widget extension
+  // the widgets extension
   Object.assign({}, commonConfig, {
-    entry: "./src/extension.ts",
+    entry: "./src/widgets.ts",
     output: {
-      filename: "extension.js",
+      filename: "widgets.js",
       path: outputPath,
       libraryTarget: outputLibraryTarget
     },
     externals: {
       "@jupyter-widgets/base": "@jupyter-widgets/base",
-      "./index": "nbextensions/ipytablewidgets/index"
+      "./index": "nbextensions/jupyter-tablewidgets/index"
     }
   })
 ];
