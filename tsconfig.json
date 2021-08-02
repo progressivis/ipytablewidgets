@@ -13,7 +13,8 @@
     "webpack-env"
   ],
   "files": [
-    "src/index.ts",
+      "src/index.ts",
+      "src/extension.ts",
       "src/serializers.ts",
       "src/compression.ts",
       "src/widgets.ts",
