@@ -36,8 +36,6 @@ jobs:
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate ipytablewidgets
-        echo "ff $(which firefox)"
-        echo "gc $(which google-chrome)"
         coverage run -m pytest ipytablewidgets/tests -vv
 
     - name: Coverage
