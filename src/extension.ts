@@ -1,3 +1,10 @@
-var __webpack_public_path__ = document.querySelector('body')!.getAttribute('data-base-url') + 'nbextensions/jupyter-tablewidgets/';
-
-export * from './index';
+if ((window as any).require !== undefined) {
+    (window as any).require.config({
+        map: {
+            "*" : {
+                "jupyter-tablewidgets": "nbextensions/jupyter-tablewidgets/index",
+            }
+        }
+    });
+}
+export function load_ipython_extension() {}

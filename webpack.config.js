@@ -17,29 +17,6 @@ const outputPath = __dirname + "/ipytablewidgets/static";
 const outputLibraryTarget = "amd";
 
 module.exports = [
-  //
-  Object.assign({}, commonConfig, {
-    entry: "./src/index.ts",
-    output: {
-      filename: "index.js",
-      library: "nbextensions/jupyter-tablewidgets/index",
-      path: outputPath,
-      libraryTarget: outputLibraryTarget
-    }
-  }),
-  // the widgets extension
-  Object.assign({}, commonConfig, {
-    entry: "./src/widgets.ts",
-    output: {
-      filename: "widgets.js",
-      path: outputPath,
-      libraryTarget: outputLibraryTarget
-    },
-    externals: {
-      "@jupyter-widgets/base": "@jupyter-widgets/base",
-      "./index": "nbextensions/jupyter-tablewidgets/index"
-    }
-  }),
   Object.assign({}, commonConfig, {
     entry: "./src/extension.ts",
     output: {
@@ -47,9 +24,24 @@ module.exports = [
       path: outputPath,
       libraryTarget: outputLibraryTarget
     },
-    externals: {
-      "@jupyter-widgets/base": "@jupyter-widgets/base",
-      "./index": "nbextensions/jupyter-tablewidgets/index"
-    }
-  })
+  }),
+  //
+  Object.assign({}, commonConfig, {
+    entry: "./src/index.ts",
+    output: {
+      filename: "index.js",
+      path: outputPath,
+      libraryTarget: outputLibraryTarget
+    },
+    externals: ["@jupyter-widgets/base"]
+  }),
+  Object.assign({}, commonConfig, {
+    entry: "./src/labplugin.ts",
+    output: {
+      filename: "labplugin.js",
+      path: outputPath,
+      libraryTarget: outputLibraryTarget
+    },
+    externals: ["@jupyter-widgets/base"]
+  }),
 ];

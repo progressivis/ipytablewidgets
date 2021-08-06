@@ -10,15 +10,15 @@ from .traitlets import TableType
 #import numpy as np
 from ipywidgets import DOMWidget
 from traitlets import Unicode, Any, Instance
-
-
+import ipywidgets as widgets
+@widgets.register
 class TableWidget(DOMWidget):
     """
     """
     _view_name = Unicode('').tag(sync=True)
     _model_name = Unicode('TableWidgetModel').tag(sync=True)
-    _view_module = Unicode('nbextensions/jupyter-tablewidgets/widgets').tag(sync=True)
-    _model_module = Unicode('nbextensions/jupyter-tablewidgets/widgets').tag(sync=True)
+    #_view_module = Unicode('nbextensions/jupyter-tablewidgets').tag(sync=True)
+    _model_module = Unicode('jupyter-tablewidgets').tag(sync=True)
     _view_module_version = Unicode('0.1.0').tag(sync=True)
     _model_module_version = Unicode('0.1.0').tag(sync=True)
     compression = None
@@ -29,14 +29,14 @@ class TableWidget(DOMWidget):
         super().__init__(**kwargs)
         pass # ...
 
-
+@widgets.register
 class EchoTableWidget(DOMWidget):
     """
     """
     _view_name = Unicode('EchoTableWidgetView').tag(sync=True)
     _model_name = Unicode('EchoTableWidgetModel').tag(sync=True)
-    _view_module = Unicode('nbextensions/jupyter-tablewidgets/widgets').tag(sync=True)
-    _model_module = Unicode('nbextensions/jupyter-tablewidgets/widgets').tag(sync=True)
+    _view_module = Unicode('jupyter-tablewidgets').tag(sync=True)
+    _model_module = Unicode('jupyter-tablewidgets').tag(sync=True)
     _view_module_version = Unicode('0.1.0').tag(sync=True)
     _model_module_version = Unicode('0.1.0').tag(sync=True)
     data = Instance(TableWidget).tag(sync=True, **serialization)

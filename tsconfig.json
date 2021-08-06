@@ -18,6 +18,7 @@
       "src/serializers.ts",
       "src/compression.ts",
       "src/widgets.ts",
-      "src/types.d.ts"
+      "src/types.d.ts",
+      "src/labplugin.ts"
   ]
 }

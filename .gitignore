@@ -1,6 +1,13 @@
 node_modules/*
 *.py~
 *.ts~
+*.js~
+*.json~
+*.yml~
+*.sh~
+*.ini~
+*.lock
+*.*#
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
