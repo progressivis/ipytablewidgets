@@ -1,7 +1,7 @@
 import { DOMWidgetView, DOMWidgetModel, unpack_models } from "@jupyter-widgets/base";
 import * as ndarray from "ndarray";
 import * as ndarray_unpack from "ndarray-unpack";
-import { table_serialization, rowProxy, IDict } from "./serializers";
+import { table_serialization } from "./serializers";
 
 export class TableWidgetModel extends DOMWidgetModel {
   defaults() {
