@@ -2,9 +2,9 @@ from abc import ABCMeta, abstractmethod, abstractproperty
 
 
 class SourceAdapter(metaclass=ABCMeta):
-    def __init__(self, source, columns=None, compression=None, touch_mode=False):
+    def __init__(self, source, columns=None, compression=None, touch_mode=True):
         self._source = source
-        self._columns = None
+        self._columns = columns
         self._compression = compression
         self._touched = False
         self._touch_mode = touch_mode
