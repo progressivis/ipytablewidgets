@@ -39,8 +39,6 @@ jobs:
         jupyter labextension install .
         conda install yarn
         cd ui-tests/	
-        npm i jest
-        npm i @types/jest
         yarn
         yarn run start-jlab:detached
         yarn run test
