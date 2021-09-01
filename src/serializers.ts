@@ -52,7 +52,6 @@ interface ISendSerializedTable {
 
 export
 function JSONToTable(obj: IReceivedSerializedTable | null, manager?: ManagerBase<any>): ISendSerializedTable | null {
-  console.log("obj", obj);
   if (obj === null) {
     return null;
   }
@@ -61,12 +60,6 @@ function JSONToTable(obj: IReceivedSerializedTable | null, manager?: ManagerBase
     console.log("modelPromise", modelPromise);
     return modelPromise;
    }*/
-  console.log("obj2", obj);
-  console.log("obj2 typeof", (typeof obj));
-  //console.log("obj2._table", obj._table);
-  // obj is {shape: list, dtype: string, array: DataView}
-  // return an ndarray object
-  // console.log("OBJ", obj);
   var data: IDict<NdArray | string[]> = {};
   var size: number = Infinity;
   let decoder = new TextDecoder("utf-8");

@@ -24,9 +24,10 @@ class TableWidget(DOMWidget):
     compression = None
     _table = TableType(None).tag(sync=True, **serialization)
 
-    def __init__(self, table=None, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(self, table=None, compression=None, **kwargs):
         self._table = table
+        self.compression = compression
+        super().__init__(**kwargs)
 
 @widgets.register
 class EchoTableWidget(DOMWidget):
