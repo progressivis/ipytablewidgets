@@ -1,13 +1,13 @@
 {
   "name": "jupyter-tablewidgets",
   "version": "0.1.0",
-  "description": "'A Custom Jupyter Widget Library for Table-alike Data Transfer'",
+  "description": "A set of widgets to help facilitate reuse of large tables across widgets",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/progressivis/ipytablewidgets.git"
   },
-  "author": "",
-  "license": "",
+  "author": "Jean-Daniel Fekete, Christian Poli",
+  "license": "BSD-3-Clause",
   "main": "ipytablewidgets/static/index",
   "bugs": {
     "url": "https://github.com/progressivis/ipytablewidgets/issues"
@@ -16,7 +16,8 @@
   "scripts": {
     "format": "prettier --write 'src/*.ts'",
     "lint": "prettier --check 'src/*.ts'",
-    "build": "webpack --mode production",
+    "build": "webpack --mode production && jlpm run build:labx",
+    "build:labx": "jupyter labextension build .",
     "test": "npm run test:firefox",
     "test:ci": "karma start --browsers=ChromeCI karma.conf.js",
     "test:chrome": "karma start --browsers=Chrome karma.conf.js",
@@ -29,9 +30,11 @@
     "lz4js": "^0.2.0",
     "ndarray": "^1.0.19",
     "ndarray-unpack": "^1.0.0",
-    "pako": "^2.0.3"
+    "pako": "^2.0.3",
+    "yarn": "^1.22.11"
   },
   "devDependencies": {
+    "@jupyterlab/builder": "^3.1.11",
     "@types/chai": "^4.2.21",
     "@types/mocha": "^9.0.0",
     "@types/ndarray": "^1.0.9",
@@ -55,10 +58,17 @@
     "webpack-cli": "^4.7.0"
   },
   "files": [
-      "ipytablewidgets/static/"
+    "ipytablewidgets/static/"
   ],
   "jupyterlab": {
-    "extension": "ipytablewidgets/static/labplugin"
+      "extension": "ipytablewidgets/static/labplugin",
+      "outputDir": "ipytablewidgets/labextension",
+      "sharedPackages": {
+        "@jupyter-widgets/base": {
+          "bundled": false,
+          "singleton": true
+	}
+      }
   },
   "private": true
 }
