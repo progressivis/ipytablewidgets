@@ -1,3 +1,5 @@
+// Initial software, Jean-Daniel Fekete, Christian Poli, Copyright (c) Inria, BSD 3-Clause License, 2021, v0.1.0
+
 import { DOMWidgetView, DOMWidgetModel, unpack_models } from "@jupyter-widgets/base";
 import * as ndarray from "ndarray";
 import * as ndarray_unpack from "ndarray-unpack";

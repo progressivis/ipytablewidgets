@@ -1,3 +1,5 @@
+# Initial software, Jean-Daniel Fekete, Christian Poli, Copyright (c) Inria, BSD 3-Clause License, 2021, v0.1.0
+
 # Module version
 version_info = (0, 1, 0, 'final', 0)
 

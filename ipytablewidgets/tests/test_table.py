@@ -1,3 +1,5 @@
+# Initial software, Jean-Daniel Fekete, Christian Poli, Copyright (c) Inria, BSD 3-Clause License, 2021, v0.1.0 
+
 import numpy as np
 from ..serializers import table_to_json, table_from_json
 from ..numpy_adapter import NumpyAdapter

@@ -1,3 +1,5 @@
+# Initial software, Jean-Daniel Fekete, Christian Poli, Copyright (c) Inria, BSD 3-Clause License, 2021, v0.1.0
+
 import numpy as np
 import json
 from .source_adapter import SourceAdapter
@@ -22,9 +24,6 @@ def array_to_json(value):
         value = value.tolist()
     elif np.issubsctype(value.dtype, object):
         value = value.astype("str").tolist()
-    # else:
-    #    import pdb;pdb.set_trace()
-    #    raise ValueError(f"Not implemented dtype {value.dtype}")
     if isinstance(value, list):
         return {"shape": (len(value),), "dtype": "str", "buffer": value}
     return {

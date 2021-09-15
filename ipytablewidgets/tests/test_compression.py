@@ -1,3 +1,5 @@
+# Initial software, Jean-Daniel Fekete, Christian Poli, Copyright (c) Inria, BSD 3-Clause License, 2021, v0.1.0 
+
 import numpy as np
 from ..serializers import col_to_json
 from ..compressors import DEFAULT_COMPRESSORS, BaseCompressor
