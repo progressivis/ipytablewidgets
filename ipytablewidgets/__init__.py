@@ -5,9 +5,8 @@ from .widgets import TableWidget, EchoTableWidget
 from .traitlets import TableType
 from .serializers import table_to_json, table_from_json, serialization
 from .compressors import ZLibCompressor, LZ4Compressor, DEFAULT_COMPRESSORS
-
-__version__ = '0.1.0'
-
+from ._version import __version__
+from ._frontend import npm_module_name, npm_package_version
 
 def _jupyter_nbextension_paths():
     """Return metadata for the ipytablewidgets nbextension."""
@@ -16,9 +15,9 @@ def _jupyter_nbextension_paths():
         # the path is relative to the inner `ipytablewidgets` directory
         src="static",
         # directory in the `nbextension/` namespace
-        dest="jupyter-tablewidgets",
+        dest=npm_module_name,
         # _also_ in the `nbextension/` namespace
-        require="jupyter-tablewidgets/extension")]
+        require=f"{npm_module_name}/extension")]
 
 
 def find_static_assets():

@@ -1,4 +1,4 @@
-// Initial software, Jean-Daniel Fekete, Christian Poli, Copyright (c) Inria, BSD 3-Clause License, 2021, v0.1.0
+// Initial software, Jean-Daniel Fekete, Christian Poli, Copyright (c) Inria, BSD 3-Clause License, 2021
 
 import pako = require('pako');
 import lz4 = require("lz4js");

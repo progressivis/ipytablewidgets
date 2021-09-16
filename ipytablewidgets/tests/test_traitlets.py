@@ -1,4 +1,4 @@
-# Initial software, Jean-Daniel Fekete, Christian Poli, Copyright (c) Inria, BSD 3-Clause License, 2021, v0.1.0 
+# Initial software, Jean-Daniel Fekete, Christian Poli, Copyright (c) Inria, BSD 3-Clause License, 2021
 
 import numpy as np
 import pandas as pd
@@ -17,7 +17,7 @@ def test_table_type_touch_mode():
     assert not pd_data.is_touched
     pd_data.touch()
     assert pd_data.is_touched
-    tw._table = pd_data    
+    tw._table = pd_data
     assert not pd_data.is_touched
 
 def test_table_type_no_touch_mode():

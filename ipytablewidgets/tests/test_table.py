@@ -1,4 +1,4 @@
-# Initial software, Jean-Daniel Fekete, Christian Poli, Copyright (c) Inria, BSD 3-Clause License, 2021, v0.1.0 
+# Initial software, Jean-Daniel Fekete, Christian Poli, Copyright (c) Inria, BSD 3-Clause License, 2021
 
 import numpy as np
 from ..serializers import table_to_json, table_from_json
@@ -16,7 +16,7 @@ class FakeWidget:
 
 def test_table_to_json_none():
     assert table_to_json(None, None) is None
-        
+
 def _table_to_json(widget):
     list_ = list('ipytablewidgets')
     arr_s = np.array(list_, dtype=str)
@@ -31,7 +31,7 @@ def _table_to_json(widget):
     assert np_json == pd_json
     assert np_data.equals(pd_data)
     assert pd_data.equals(np_data)
-    assert pd_data.equals(pd.DataFrame(np_data._source))    
+    assert pd_data.equals(pd.DataFrame(np_data._source))
 
 def test_table_to_json():
     widget = FakeWidget()

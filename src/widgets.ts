@@ -1,9 +1,11 @@
-// Initial software, Jean-Daniel Fekete, Christian Poli, Copyright (c) Inria, BSD 3-Clause License, 2021, v0.1.0
+// Initial software, Jean-Daniel Fekete, Christian Poli, Copyright (c) Inria, BSD 3-Clause License, 2021
 
 import { DOMWidgetView, DOMWidgetModel, unpack_models } from "@jupyter-widgets/base";
 import * as ndarray from "ndarray";
 import * as ndarray_unpack from "ndarray-unpack";
 import { table_serialization } from "./serializers";
+
+let version = require('../package.json').version;
 
 export class TableWidgetModel extends DOMWidgetModel {
   defaults() {
@@ -12,7 +14,7 @@ export class TableWidgetModel extends DOMWidgetModel {
             _view_name: null,
       	    _model_module: 'jupyter-tablewidgets',
       	    _view_module: null,
-      	    _model_module_version: '0.1.0',
+	    _model_module_version: version,
       	    _view_module_version: '',
             _table:  ndarray([]),
             _columns: []
@@ -34,8 +36,8 @@ export class EchoTableWidgetModel extends DOMWidgetModel {
             _view_name: "EchoTableWidgetView",
       	    _model_module: 'jupyter-tablewidgets',
       	    _view_module: 'jupyter-tablewidgets',
-      	    _model_module_version: '0.1.0',
-      	    _view_module_version: '0.1.0',
+	    _model_module_version: version,
+	    _view_module_version: version,
             data: [],
 	    echo: []
             }
