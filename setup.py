@@ -22,7 +22,8 @@ npm_package_name = 'jupyter-tablewidgets'
 python_package_name = 'ipytablewidgets'
 version = get_version(pjoin(python_package_name, '_version.py'))
 
-js_dir = pjoin(here, 'src')
+js_dir = pjoin(here, 'js')
+js_src_dir = pjoin(js_dir, 'src')
 
 # Representative files that should exist after a successful build
 jstargets = [
@@ -39,7 +40,7 @@ data_files_spec = [
 
 cmdclass = create_cmdclass('jsdeps', data_files_spec=data_files_spec)
 cmdclass['jsdeps'] = combine_commands(
-    install_npm(here, npm=['yarn'], source_dir=js_dir, build_cmd='build'), ensure_targets(jstargets),
+    install_npm(js_dir, npm=['yarn'], source_dir=js_src_dir, build_cmd='build'), ensure_targets(jstargets),
 )
 
 setup_args = dict(

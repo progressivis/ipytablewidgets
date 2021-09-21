@@ -7,7 +7,7 @@ from .._frontend import npm_module_name, npm_package_version
 here = os.path.dirname(os.path.abspath(__file__))
 
 def test_frontend():
-    package_json_file = pjoin(here, '..', '..', 'package.json')
+    package_json_file = pjoin(here, '..', '..', 'js', 'package.json')
     with open(package_json_file) as pjf:
         package_json = json.load(pjf)
         print(package_json)
