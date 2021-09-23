@@ -36,7 +36,7 @@ jobs:
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate ipytablewidgets
         conda install jupyterlab=3.0.11 -c conda-forge # required 4 galata
-        jupyter labextension install .
+        jupyter labextension install ./js
         conda install yarn
         cd ui-tests/	
         yarn
