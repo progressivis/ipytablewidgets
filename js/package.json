@@ -8,7 +8,7 @@
   },
   "author": "Jean-Daniel Fekete, Christian Poli",
   "license": "BSD-3-Clause",
-  "main": "ipytablewidgets/static/index",
+  "main": "lib/index",
   "bugs": {
     "url": "https://github.com/progressivis/ipytablewidgets/issues"
   },
@@ -17,6 +17,7 @@
     "format": "prettier --write 'src/*.ts'",
     "lint": "prettier --check 'src/*.ts'",
     "build": "webpack --mode production && jlpm run build:labx",
+    "build:nb": "webpack --mode production",
     "build:labx": "jupyter labextension build .",
     "test": "npm run test:firefox",
     "test:ci": "karma start --browsers=ChromeCI karma.conf.js",
@@ -57,17 +58,17 @@
     "webpack-cli": "^4.7.0"
   },
   "files": [
-    "ipytablewidgets/static/"
+    "../ipytablewidgets/static/"
   ],
   "jupyterlab": {
-      "extension": "ipytablewidgets/static/labplugin",
-      "outputDir": "ipytablewidgets/labextension",
-      "sharedPackages": {
-        "@jupyter-widgets/base": {
-          "bundled": false,
-          "singleton": true
-	}
+    "extension": "lib/labplugin",
+    "outputDir": "../labextension",
+    "sharedPackages": {
+      "@jupyter-widgets/base": {
+        "bundled": false,
+        "singleton": true
       }
+    }
   },
   "private": true
 }

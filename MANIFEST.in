@@ -1,18 +1,14 @@
 graft ipytablewidgets/static
-graft ipytablewidgets/labextension
+graft labextension
 
-graft src
-graft tests
-prune **/node_modules
+graft js
+graft ipytablewidgets/tests
+prune **/js/node_modules
 
-include jupyter-tablewidgets.json
-include tsconfig.json
-include webpack.config.js
-include karma.conf.js
 include LICENSE
 include setup.py
+include setup.cfg
 include pyproject.toml
-include install.json
 
 # Patterns to exclude from any directory
 global-exclude *~

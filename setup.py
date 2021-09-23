@@ -28,14 +28,15 @@ js_src_dir = pjoin(js_dir, 'src')
 # Representative files that should exist after a successful build
 jstargets = [
     pjoin(here, python_package_name, 'static', 'index.js'),
-    pjoin(here, python_package_name, 'labextension', 'package.json'),    
+    pjoin(here, 'labextension', 'package.json'),    
 ]
 
 data_files_spec = [
-    (f'share/jupyter/nbextensions/{npm_package_name}', f'{python_package_name}/static', '*.*'),
-    (f'share/jupyter/labextensions/{npm_package_name}', f'{python_package_name}/labextension', '**'),
-    (f'share/jupyter/labextensions/{npm_package_name}', '.', 'install.json'),
-    ('etc/jupyter/nbconfig/notebook.d', '.', f'{npm_package_name}.json'),
+    (f'share/jupyter/nbextensions/{npm_package_name}', f'{python_package_name}/static', 'index.js'),
+    (f'share/jupyter/nbextensions/{npm_package_name}', f'{python_package_name}/static', 'extension.js'),
+    (f'share/jupyter/labextensions/{npm_package_name}', 'labextension', '**'),
+    (f'share/jupyter/labextensions/{npm_package_name}', 'js', 'install.json'),
+    ('etc/jupyter/nbconfig/notebook.d', 'js', f'{npm_package_name}.json'),
 ]
 
 cmdclass = create_cmdclass('jsdeps', data_files_spec=data_files_spec)
