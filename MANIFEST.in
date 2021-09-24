@@ -1,5 +1,5 @@
 graft ipytablewidgets/static
-graft labextension
+graft share/jupyter/labextensions/ipytablewidgets
 
 graft js
 graft ipytablewidgets/tests

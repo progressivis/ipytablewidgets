@@ -1,57 +1,48 @@
-const commonConfig = {
-  resolve: {
-    extensions: [".ts", ".tsx", ".js"]
-  },
-  devtool: "source-map",
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        loader: "ts-loader"
-      }
-    ]
-  }
-};
+const path = require('path');
+const nbextPass = path.resolve(__dirname, '../ipytablewidgets/static');
+const distPass = path.resolve(__dirname, 'dist');
 
-const outputPath = __dirname + "/../ipytablewidgets/static";
-const outputLibPath = __dirname + "/lib";
 const outputLibraryTarget = "amd";
+const rules = [];
 
 module.exports = [
-  Object.assign({}, commonConfig, {
-    entry: "./src/extension.ts",
+  {
+    // Notebook extension
+    entry: './lib/extension.js',
     output: {
-      filename: "extension.js",
-      path: outputPath,
+      filename: 'extension.js',
+      path: nbextPass,
       libraryTarget: outputLibraryTarget
     },
-  }),
-  //
-  Object.assign({}, commonConfig, {
-    entry: "./src/index.ts",
+    externals: ['@jupyter-widgets/base'],
+    mode: 'production',
+  },
+  {
+    entry: './lib/index.js',
     output: {
-      filename: "index.js",
-      path: outputPath,
+      filename: 'index.js',
+      path: nbextPass,
       libraryTarget: outputLibraryTarget
     },
-    externals: ["@jupyter-widgets/base"]
-  }),
-  Object.assign({}, commonConfig, {
-    entry: "./src/index.ts",
+    devtool: 'source-map',
+    module: {
+      rules: rules,
+    },
+    externals: ['@jupyter-widgets/base'],
+    mode: 'production',
+  },
+  {
+    entry: './lib/index.js',
     output: {
-      filename: "index.js",
-      path: outputLibPath,
+      filename: 'index.js',
+      path: distPass,
       libraryTarget: outputLibraryTarget
     },
-    externals: ["@jupyter-widgets/base"]
-  }),
-  Object.assign({}, commonConfig, {
-    entry: "./src/labplugin.ts",
-    output: {
-      filename: "labplugin.js",
-      path: outputLibPath,
-      libraryTarget: outputLibraryTarget
+    devtool: 'source-map',
+    module: {
+      rules: rules,
     },
-    externals: ["@jupyter-widgets/base"]
-  }),
+    externals: ['@jupyter-widgets/base'],
+    mode: 'production',
+  },
 ];

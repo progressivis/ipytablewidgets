@@ -16,9 +16,10 @@
   "scripts": {
     "format": "prettier --write 'src/*.ts'",
     "lint": "prettier --check 'src/*.ts'",
-    "build": "webpack --mode production && jlpm run build:labx",
+    "build": "jlpm run build:lib && webpack --mode production && jlpm run build:labx",
     "build:nb": "webpack --mode production",
     "build:labx": "jupyter labextension build .",
+    "build:lib": "tsc",
     "test": "npm run test:firefox",
     "test:ci": "karma start --browsers=ChromeCI karma.conf.js",
     "test:chrome": "karma start --browsers=Chrome karma.conf.js",
@@ -28,6 +29,8 @@
   },
   "dependencies": {
     "@jupyter-widgets/base": "4.0.0",
+    "@lumino/messaging": "^1.8.0",
+    "@lumino/widgets": "^1.27.0",
     "lz4js": "^0.2.0",
     "ndarray": "^1.0.19",
     "ndarray-unpack": "^1.0.0",
@@ -53,16 +56,18 @@
     "mocha": "^9.0.2",
     "prettier": "^2.3.0",
     "ts-loader": "^9.2.2",
+    "tsc": "^2.0.3",
     "typescript": "^4.3.2",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.0"
   },
   "files": [
-    "../ipytablewidgets/static/"
+    "lib/",
+    "dist/"
   ],
   "jupyterlab": {
     "extension": "lib/labplugin",
-    "outputDir": "../labextension",
+    "outputDir": "../share/jupyter/labextensions/jupyter-tablewidgets",
     "sharedPackages": {
       "@jupyter-widgets/base": {
         "bundled": false,

@@ -5,7 +5,7 @@ import { decompress } from "./compression";
 type NdArray =  ndarray.NdArray;
 
 import {
-  WidgetModel, ManagerBase, unpack_models
+  WidgetModel, ManagerBase
 } from '@jupyter-widgets/base';
 
 export
@@ -57,11 +57,6 @@ function JSONToTable(obj: IReceivedSerializedTable | null, manager?: ManagerBase
   if (obj === null) {
     return null;
   }
-  /*if (typeof obj === 'string') {
-    const modelPromise = unpack_models(obj, manager!) as Promise<WidgetModel>;
-    console.log("modelPromise", modelPromise);
-    return modelPromise;
-   }*/
   var data: IDict<NdArray | string[]> = {};
   var size: number = Infinity;
   let decoder = new TextDecoder("utf-8");
