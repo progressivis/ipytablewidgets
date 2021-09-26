@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 import os
-import os
+import json
 import os.path as osp
 from os.path import join as pjoin
 from distutils import log
@@ -10,7 +10,7 @@ from jupyter_packaging import (
     install_npm,
     ensure_targets,
     combine_commands,
-    get_version,
+    #get_version,
 )
 
 
@@ -18,7 +18,11 @@ here = osp.dirname(osp.abspath(__file__))
 
 npm_package_name = 'jupyter-tablewidgets'
 python_package_name = 'ipytablewidgets'
-version = get_version(pjoin(python_package_name, '_version.py'))
+#version = get_version(pjoin(python_package_name, '_version.py'))
+package_json = pjoin(here, python_package_name, 'labextension', 'package.json')
+with open(package_json) as f:
+    version = json.load(f)['version']
+
 
 js_dir = pjoin(here, 'js')
 js_src_dir = pjoin(js_dir, 'src')
