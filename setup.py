@@ -1,5 +1,7 @@
 from setuptools import setup, find_packages
 import os
+import os
+import os.path as osp
 from os.path import join as pjoin
 from distutils import log
 
@@ -12,7 +14,7 @@ from jupyter_packaging import (
 )
 
 
-here = os.path.dirname(os.path.abspath(__file__))
+here = osp.dirname(osp.abspath(__file__))
 
 npm_package_name = 'jupyter-tablewidgets'
 python_package_name = 'ipytablewidgets'

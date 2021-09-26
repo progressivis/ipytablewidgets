@@ -1,15 +1,13 @@
 # Initial software, Jean-Daniel Fekete, Christian Poli, Copyright (c) Inria, BSD 3-Clause License, 2021
 
-# Module version
-version_info = (0, 1, 0, 'final', 0)
+import os
+import os.path as osp
+from os.path import join as pjoin
+import json
 
-# Module version stage suffix map
-_specifier_ = {'alpha': 'a', 'beta': 'b', 'candidate': 'rc', 'final': ''}
+here = osp.dirname(osp.abspath(__file__))
+package_json = pjoin(here, 'labextension', 'package.json')
+with open(package_json) as f:
+    __version__ = json.load(f)['version']
 
-# Module version accessible using ipytablewidgets.__version__
-__version__ = '%s.%s.%s%s' % (version_info[0],
-                              version_info[1],
-                              version_info[2],
-                              '' if version_info[3] == 'final' else
-                              (_specifier_[version_info[3]] +
-                               str(version_info[4])))
+
