@@ -1,8 +1,8 @@
 graft ipytablewidgets/static
-graft share/jupyter/labextensions/ipytablewidgets
-
-graft js
+graft ipytablewidgets/labextension
 graft ipytablewidgets/tests
+graft js
+
 prune **/js/node_modules
 
 include LICENSE

@@ -66,7 +66,7 @@
   ],
   "jupyterlab": {
     "extension": "lib/labplugin",
-    "outputDir": "../share/jupyter/labextensions/jupyter-tablewidgets",
+    "outputDir": "../ipytablewidgets/labextension",
     "sharedPackages": {
       "@jupyter-widgets/base": {
         "bundled": false,
