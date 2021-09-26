@@ -19,6 +19,16 @@ def _jupyter_nbextension_paths():
         # _also_ in the `nbextension/` namespace
         require=f"{npm_module_name}/extension")]
 
+def _jupyter_labextension_paths():
+    return [{
+        "section": "notebook",
+        "src": "labextension",
+        "dest": npm_module_name,
+        "require": f"{npm_module_name}/extension"
+    }]
+
+
+
 
 def find_static_assets():
     warn("""To use the ipytablewidgets nbextension, you'll need to update

@@ -14,10 +14,6 @@ from jupyter_packaging import (
 
 here = os.path.dirname(os.path.abspath(__file__))
 
-log.set_verbosity(log.DEBUG)
-log.info('setup.py entered')
-log.info('$PATH=%s' % os.environ['PATH'])
-
 npm_package_name = 'jupyter-tablewidgets'
 python_package_name = 'ipytablewidgets'
 version = get_version(pjoin(python_package_name, '_version.py'))
