@@ -3,7 +3,6 @@ import os
 import json
 import os.path as osp
 from os.path import join as pjoin
-from distutils import log
 
 from jupyter_packaging import (
     create_cmdclass,
