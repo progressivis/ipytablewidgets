@@ -16,62 +16,33 @@ across different widgets, and different packages.
 
 
 ## Installation
-<!--
-A typical installation requires the following three commands to be run:
+
+Using pip:
 
 ```bash
 pip install ipytablewidgets
-jupyter nbextension install --py [--sys-prefix|--user|--system] ipytablewidgets
-jupyter nbextension enable --py [--sys-prefix|--user|--system] ipytablewidgets
 ```
 
-Or, if you use jupyterlab:
+## Development installation
+
+The first step requires the following three commands to be run (requires yarn and jupyterlab>=3):
 
 ```bash
-pip install ipytablewidgets
-jupyter labextension install jupyterlab-tablewidgets
+$ git clone https://github.com/progressivis/ipytablewidgets.git
+$ cd ipytablewidgets
+$ pip install -e .
 ```
--->
+The development of extensions for **jupyter notebook** and **jupyter lab** requires **JavaScript** code to be modified in-place. For this reason, _lab_ and _notebook_ extensions need to be configured this way:
 
-**NB:** Currently only the development mode installation is available.
-
-### Installation with miniconda/anaconda (recommended):
-
-For now, the easiest way to install **ipytablewidgets** is as follows:
-
-1. Clone this repository then cd into it
-
-2. Install the latest version of miniconda (if not yet done)
-
-3. Create a conda environment with the following command:
-
-```
-conda env create -f environment.yml # [-n customized-env-name]
-```
-
-NB: by default it will create an environment called *ipytablewidgets*. If you want, you can change this name in the file *environment.yml* before runninng the command or by using the option```-n customized-env-name```. Remember to reflect this change in the following commands.
-
-
-4. Activate this environment:
-
-```
-conda activate ipytablewidgets
-```
-5. Execute the following commands (this step is not necessary if you don't need TableWidget but only the traitlet TableType, see the **Tables** section for more details):
-
-```
-jupyter nbextension install --py --symlink --sys-prefix ipytablewidgets
-jupyter nbextension enable --py --sys-prefix ipytablewidgets
-```
-
-Or, if you use jupyterlab:
-
-```
-jupyter labextension install @jupyter-widgets/jupyterlab-manager
-jupyter labextension install .
-```
-
-
+* For **jupyter notebook:**
+    ```bash
+    $ jupyter nbextension install --py --overwrite --symlink --sys-prefix ipytablewidgets
+    $ jupyter nbextension enable --py --sys-prefix ipytablewidgets
+    ```
+* For **jupyter lab:**
+    ```bash
+    $ jupyter labextension develop . --overwrite
+    ```
 
 ### Tables
 
