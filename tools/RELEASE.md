@@ -1,6 +1,7 @@
 # How to release a new version of ipytablewidgets
 
-**NB:** Currently, this procedure was tested only on **Linux**
+**NB:** Currently, this procedure was tested only on **Linux**.
+
 **NB:** You can create a new release only if you have _maintainer_ privileges on:
 
 * ipytablewidgets _PyPI_ project
@@ -38,7 +39,7 @@ conda activate itw_release
 
 #### -r, --release-type [major|minor|patch|manual]
 
-This option is mandatory. The first three values (major, minor, patch) have the same meaning as in [npm version](https://docs.npmjs.com/cli/v7/commands/npm-version) (actually _npm version_ is actually executed, then the new value of the _version_ key in _js/package.json_ is used for the following steps)
+This option is mandatory. The first three values (major, minor, patch) have the same meaning as in [npm version](https://docs.npmjs.com/cli/v7/commands/npm-version) (actually _npm version_ is executed, then the new value of the _version_ key in _js/package.json_ is used for the following steps)
 
 The _manual_ value keeps the current version in _package.json_ unchanged. If the corresponding repository tag already exists then no new tag is created and the user is asked if he wants to continue with packaging. This is useful if one want to recover a previous failure (e.g. when the publication on **PyPI** or **NPM** failed for some reason)
 
