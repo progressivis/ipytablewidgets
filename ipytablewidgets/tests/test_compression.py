@@ -11,7 +11,7 @@ import pytest
 DECOMPRESS = {'lz4': lz4.frame.decompress, 'zlib': zlib.decompress}
 
 
-def _col_to_json_none(dtype, dtypeout, size): # no compression
+def _col_to_json_none(dtype, dtypeout, size):  # no compression
     data = np.arange(size, dtype=dtype)
     json_data = col_to_json(data, None)
     assert json_data == {
@@ -26,7 +26,8 @@ def test_col_to_json_none_float32():
     _col_to_json_none('float32', 'float32', 16)
 
 
-def _col_to_json_compression(dtype, dtypeout, size, method): # method => compression
+# method => compression
+def _col_to_json_compression(dtype, dtypeout, size, method):
     data = np.arange(size, dtype=dtype)
     compressor = DEFAULT_COMPRESSORS[method]
     json_data = col_to_json(data, compressor).copy()
@@ -38,7 +39,9 @@ def _col_to_json_compression(dtype, dtypeout, size, method): # method => compres
         'compression': method
     }
 
-def _col_to_json_compression_str(method): # method => compression
+
+# method => compression
+def _col_to_json_compression_str(method):
     raw_data = list('ipytablewidgets')
     data = np.array(raw_data, dtype="str")
     compressor = DEFAULT_COMPRESSORS[method]
@@ -51,19 +54,28 @@ def _col_to_json_compression_str(method): # method => compression
         'compression': method
     }
 
+
 def test_col_to_json_lz4_float32():
     _col_to_json_compression('float32', 'float32', 16, 'lz4')
+
+
 def test_col_to_json_lz4_str():
     _col_to_json_compression_str('lz4')
+
+
 def test_col_to_json_zlib_float32():
     _col_to_json_compression('float32', 'float32', 16, 'zlib')
+
+
 def test_col_to_json_zlib_str():
     _col_to_json_compression_str('zlib')
+
 
 class FakeCompressor(BaseCompressor):
     def compress(self, data):
         ...
     ...
+
 
 def test_fake_compressor_name():
     fc = FakeCompressor()

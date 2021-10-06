@@ -11,12 +11,13 @@ import {
 export
 interface IReceivedSerializedArray {
   shape: number[];
-  dtype: "int8"|"int16"|"int32"|"uint8"|"uint16"|"uint32"|"float32"|"float64"|"str";
+  dtype: "bool"|"int8"|"int16"|"int32"|"uint8"|"uint16"|"uint32"|"float32"|"float64"|"str";
   buffer: DataView | string[];
   compression?: string;
 }
 
 const dtypeToArray = {
+    "bool": Uint8Array,
     int8: Int8Array,
     int16: Int16Array,
     int32: Int32Array,

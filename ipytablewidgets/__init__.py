@@ -1,3 +1,5 @@
+from warnings import warn
+
 from .source_adapter import SourceAdapter
 from .pandas_adapter import PandasAdapter
 from .numpy_adapter import NumpyAdapter
@@ -19,6 +21,7 @@ def _jupyter_nbextension_paths():
         # _also_ in the `nbextension/` namespace
         require=f"{npm_module_name}/extension")]
 
+
 def _jupyter_labextension_paths():
     return [{
         "section": "notebook",
@@ -26,8 +29,6 @@ def _jupyter_labextension_paths():
         "dest": npm_module_name,
         "require": f"{npm_module_name}/extension"
     }]
-
-
 
 
 def find_static_assets():
