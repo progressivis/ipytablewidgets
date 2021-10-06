@@ -92,6 +92,7 @@ def test_table_translate():
     assert (isinstance(D, np.ndarray)
             and D.dtype == object
             and D[4] == "")
+    return pd_data
 
 
 def _table_to_json(widget):
