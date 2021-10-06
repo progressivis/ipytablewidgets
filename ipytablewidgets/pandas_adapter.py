@@ -73,15 +73,10 @@ class PandasAdapter(SourceAdapter):
                     "".format(col_name=col_name, dtype=dtype)
                 )
             elif str(dtype).startswith("geometry"):
-                # Not valid for now
-                raise ValueError(
-                    'Field "{col_name}" has type "{dtype}" which is '
-                    "not supported by Vega."
-                    "".format(col_name=col_name, dtype=dtype)
-                )
                 # geopandas >=0.6.1 uses the dtype geometry. Continue here
                 # otherwise it will give an error on np.issubdtype(dtype, np.integer)
-                # continue
+                self.column[col_name] = df[col_name]
+                continue
             elif str(dtype) in {
                 "Int8",
                 "Int16",
@@ -99,19 +94,19 @@ class PandasAdapter(SourceAdapter):
             elif np.issubdtype(dtype, np.integer):
                 # convert integers to objects; np.int is not JSON serializable
                 self.column[col_name] = df[col_name].astype(object)
-            elif np.issubdtype(dtype, np.floating):
-                # For floats, convert to Python float: np.float is not JSON serializable
-                # Also convert NaN/inf values to null, as they are not JSON serializable
-                col = df[col_name]
-                bad_values = col.isnull() | np.isinf(col)
-                self.column[col_name] = col.astype(object).where(~bad_values, None)
-            elif dtype == object:
-                # Convert numpy arrays saved as objects to lists
-                # Arrays are not JSON serializable
-                col = df[col_name].apply(to_list_if_array, convert_dtype=False)
-                self.column[col_name] = col.where(col.notnull(), None)
+            # elif np.issubdtype(dtype, np.floating):
+            #     # For floats, convert to Python float: np.float is not JSON serializable
+            #     # Also convert NaN/inf values to null, as they are not JSON serializable
+            #     col = df[col_name]
+            #     bad_values = col.isnull() | np.isinf(col)
+            #     self.column[col_name] = col.astype(object).where(~bad_values, None)
+            # elif dtype == object:
+            #     # Convert numpy arrays saved as objects to lists
+            #     # Arrays are not JSON serializable
+            #     col = df[col_name].apply(to_list_if_array, convert_dtype=False)
+            #     self.column[col_name] = col.where(col.notnull(), None)
             else:
-                self.column[col_name] = col.to_numpy()  # TODO check more
+                self.column[col_name] = df[col_name]  # TODO check more
 
         super().__init__(df, *args, columns=columns, **kw)
 

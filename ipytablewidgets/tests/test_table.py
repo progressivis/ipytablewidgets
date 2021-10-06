@@ -71,12 +71,17 @@ def test_table_translate():
     data = pd.date_range("2018-01-01", periods=len(list_), freq="H")
     arr_D = pd.Series(data)
     arr_D[4] = pd.NA  # Add NA at index 4
+    # Convert nullable integer datatypes
+    data = np.arange(len(list_), dtype='int32')
+    arr_I = pd.Series(data, dtype="UInt16")
+    arr_I[5] = pd.NA
     pd_data = PandasAdapter(pd.DataFrame({'s': arr_s,
                                           'n': arr_n,
                                           'c': arr_c,
                                           'S': arr_S,
                                           'B': arr_B,
-                                          'D': arr_D}))
+                                          'D': arr_D,
+                                          'I': arr_I}))
     cat = pd_data.to_array('c')
     assert (isinstance(cat, np.ndarray)
             and cat.dtype == object)
@@ -92,6 +97,10 @@ def test_table_translate():
     assert (isinstance(D, np.ndarray)
             and D.dtype == object
             and D[4] == "")
+    I = pd_data.to_array('I')
+    assert (isinstance(I, np.ndarray)
+            and I.dtype == object
+            and I[5] is None)
     return pd_data
 
 
@@ -110,6 +119,7 @@ def _table_to_json(widget):
     assert np_data.equals(pd_data)
     assert pd_data.equals(np_data)
     assert pd_data.equals(pd.DataFrame(np_data._source))
+    pd_json = table_to_json(test_table_translate(), widget)
 
 
 def test_table_to_json():

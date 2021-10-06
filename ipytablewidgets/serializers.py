@@ -6,6 +6,7 @@ from .source_adapter import SourceAdapter
 from .compressors import DEFAULT_COMPRESSORS, BaseCompressor
 from ipywidgets import widget_serialization, Widget
 
+
 def array_to_json(value):
     """
     numpy to JSON serializer.
@@ -39,11 +40,14 @@ def col_to_json(value, compression):
     if compression is None:
         return json_
     arr = json_.get("buffer")
-    if value.dtype == object or value.dtype == str or value.dtype.name.startswith('str'):
+    if (value.dtype == object
+       or value.dtype == str
+       or value.dtype.name.startswith('str')):
         arr = json.dumps(arr).encode()
     json_["buffer"] = compression.compress(arr)
     json_["compression"] = compression.name
     return json_
+
 
 def _expand_compressors(compr_dict):
     res = {}
@@ -56,6 +60,7 @@ def _expand_compressors(compr_dict):
             res[k] = v
     return res
 
+
 def table_to_json(value, widget):
     if value is None:
         return None
@@ -63,10 +68,10 @@ def table_to_json(value, widget):
         return widget_serialization['to_json'](value, widget)
     assert isinstance(value, SourceAdapter)
     compression = value._compression or widget.compression
-    if isinstance(compression, dict): # column specific compressors
+    if isinstance(compression, dict):  # column specific compressors
         compression = _expand_compressors(compression)
         data = {cn: col_to_json(value.to_array(cn),
-                                compression[cn])
+                                compression.get(cn, None))
                 for cn in value.columns}
     else:
         # unique compression for all columns
