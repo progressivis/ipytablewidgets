@@ -52,7 +52,7 @@ def test_table_non_str_column():
         PandasAdapter(df, columns=['0', 1])
     PandasAdapter(df, columns=['0', '1'])
 
-@pytest.mark.skip(reason="to check...")
+#@pytest.mark.skip(reason="to check...")
 def test_table_translate():
     # TODO add NaN values
     list_ = list('ipytablewidgets')
@@ -75,13 +75,18 @@ def test_table_translate():
     data = np.arange(len(list_), dtype='int32')
     arr_I = pd.Series(data, dtype="UInt16")
     arr_I[5] = pd.NA
+    # Convert object array with sub arrays in it (edge case)
+    data = list('ipytablewidgets')
+    arr_O = np.array(data, dtype=object)
+    arr_O[6] = np.arange(10)
     pd_data = PandasAdapter(pd.DataFrame({'s': arr_s,
                                           'n': arr_n,
                                           'c': arr_c,
                                           'S': arr_S,
                                           'B': arr_B,
                                           'D': arr_D,
-                                          'I': arr_I}))
+                                          'I': arr_I,
+                                          'O': arr_O}))
     cat = pd_data.to_array('c')
     assert (isinstance(cat, np.ndarray)
             and cat.dtype == object)
@@ -101,6 +106,10 @@ def test_table_translate():
     assert (isinstance(I, np.ndarray)
             and I.dtype == object
             and I[5] is None)
+    O = pd_data.to_array('O')
+    assert (isinstance(O, np.ndarray)
+            and O.dtype == object
+            and isinstance(O[6], list))
     return pd_data
 
 
