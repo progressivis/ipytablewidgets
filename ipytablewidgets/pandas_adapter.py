@@ -89,11 +89,11 @@ class PandasAdapter(SourceAdapter):
             }:  # nullable integer datatypes (since 24.0)
                 # https://pandas.pydata.org/pandas-docs/version/0.25/whatsnew/v0.24.0.html#optional-integer-na-support
                 # TODO Check if there are nulls before converting
-                col = df[col_name].astype(object)
+                col = df[col_name].astype(int)
                 self.column[col_name] = col.where(col.notnull(), None)
             elif np.issubdtype(dtype, np.integer):
                 # convert integers to objects; np.int is not JSON serializable
-                self.column[col_name] = df[col_name].astype(object)
+                self.column[col_name] = df[col_name].astype(int)
             # elif np.issubdtype(dtype, np.floating):
             #     # For floats, convert to Python float: np.float is not JSON serializable
             #     # Also convert NaN/inf values to null, as they are not JSON serializable
