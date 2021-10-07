@@ -37,6 +37,13 @@ def test_table_unsupported():
         PandasAdapter(df)
     assert "Hierarchical columns" in str(excinfo.value)
 
+    with pytest.raises(ValueError) as excinfo:
+        s = pd.Series(pd.date_range("2012-1-1", periods=3, freq="D"))
+        td = pd.Series([pd.Timedelta(days=i) for i in range(3)])
+        df = pd.DataFrame({"A": s, "B": td})
+        PandasAdapter(df)
+    assert "not supported" in str(excinfo.value)
+
 
 def test_table_range_index():
     df = pd.DataFrame([[1, 2, 3], [4, 5, 6]])
@@ -52,7 +59,7 @@ def test_table_non_str_column():
         PandasAdapter(df, columns=['0', 1])
     PandasAdapter(df, columns=['0', '1'])
 
-#@pytest.mark.skip(reason="to check...")
+
 def test_table_translate():
     # TODO add NaN values
     list_ = list('ipytablewidgets')
@@ -128,7 +135,7 @@ def _table_to_json(widget):
     assert np_data.equals(pd_data)
     assert pd_data.equals(np_data)
     assert pd_data.equals(pd.DataFrame(np_data._source))
-    #pd_json = table_to_json(test_table_translate(), widget)
+    pd_json = table_to_json(test_table_translate(), widget)
 
 
 def test_table_to_json():

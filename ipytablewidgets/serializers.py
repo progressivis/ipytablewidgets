@@ -12,6 +12,7 @@ def array_to_json(value):
     numpy to JSON serializer.
     """
     assert isinstance(value, np.ndarray)
+        
     if value.dtype.name == "int64":
         value = value.astype("int32", order="C")
     elif value.dtype.name == "uint64":
@@ -24,7 +25,7 @@ def array_to_json(value):
     elif np.issubsctype(value.dtype, str):
         value = value.tolist()
     elif np.issubsctype(value.dtype, object):
-        value = value.astype("str").tolist()
+        value = list(map(str, value))
     if isinstance(value, list):
         return {"shape": (len(value),), "dtype": "str", "buffer": value}
     return {
