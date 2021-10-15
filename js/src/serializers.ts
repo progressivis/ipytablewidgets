@@ -127,7 +127,8 @@ function rowProxy(table: ISendSerializedTable|null):any {
             Object.defineProperty(proto, name, {
                 get: function():any {
                     const i:number = (this[RowIndex] as number)
-                    return arraycolumn.get(i);
+                    const v:any = arraycolumn.get(i);
+                    return isNaN(v) ? null : v;
                 },
                 set: function() {
                     throw Error('Arrow field values can not be overwritten.');
