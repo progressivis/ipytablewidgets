@@ -73,6 +73,5 @@
         "singleton": true
       }
     }
-  },
-  "private": true
+  }
 }
