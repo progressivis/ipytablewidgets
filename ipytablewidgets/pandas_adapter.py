@@ -14,7 +14,7 @@ class PandasAdapter(SourceAdapter):
         if isinstance(df.index, pd.MultiIndex):
             raise ValueError("Hierarchical indices not supported")
         if isinstance(df.columns, pd.MultiIndex):
-            raise ValueError("Hierarchical columns not supported")
+            raise ValueError("Hierarchical indices not supported")
 
         if columns is None:
             columns = df.columns
@@ -86,7 +86,9 @@ class PandasAdapter(SourceAdapter):
                 "UInt16",
                 "UInt32",
                 "UInt64",
-            }:  # nullable integer datatypes (since 24.0)
+                "Float32",
+                "Float64",
+            }:  # nullable integer datatypes (since 24.0) and nullable float datatypes (since 1.2.0)
                 # https://pandas.pydata.org/pandas-docs/version/0.25/whatsnew/v0.24.0.html#optional-integer-na-support
                 # TODO Check if there are nulls before converting
                 col = df[col_name].astype(object)
