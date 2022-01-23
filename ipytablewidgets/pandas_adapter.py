@@ -14,7 +14,7 @@ class PandasAdapter(SourceAdapter):
         if isinstance(df.index, pd.MultiIndex):
             raise ValueError("Hierarchical indices not supported")
         if isinstance(df.columns, pd.MultiIndex):
-            raise ValueError("Hierarchical indices not supported")
+            raise ValueError("Hierarchical columns not supported")
 
         if columns is None:
             columns = df.columns
