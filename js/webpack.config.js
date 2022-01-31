@@ -10,7 +10,7 @@ module.exports = [
     // Notebook extension
     entry: './lib/extension.js',
       output: {
-      hashFunction: "xxhash64",
+      hashFunction: "sha256",
       filename: 'extension.js',
       path: nbextPass,
       libraryTarget: outputLibraryTarget
@@ -21,7 +21,7 @@ module.exports = [
   {
     entry: './lib/index.js',
       output: {
-      hashFunction: "xxhash64",
+      hashFunction: "sha256",
       filename: 'index.js',
       path: nbextPass,
       libraryTarget: outputLibraryTarget
@@ -36,7 +36,7 @@ module.exports = [
   {
     entry: './lib/index.js',
       output: {
-      hashFunction: "xxhash64",
+      hashFunction: "sha256",
       filename: 'index.js',
       path: distPass,
       libraryTarget: outputLibraryTarget
