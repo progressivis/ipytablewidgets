@@ -42,9 +42,9 @@ jobs:
         yarn
         yarn run start-jlab:detached
         yarn run test
-      - name: Upload output file
-        if: failure()
-        uses: actions/upload-artifact@v2
-        with:
-          name: cell-artifact
-          path: ui-tests/test-output/test/screenshots/end2end_cell_*.png
+    - name: Upload output file
+      if: failure()
+      uses: actions/upload-artifact@v2
+      with:
+        name: cell-artifact
+        path: ui-tests/test-output/test/screenshots/end2end_cell_*.png
