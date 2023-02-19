@@ -35,7 +35,7 @@ class PandasAdapter(SourceAdapter):
             else:
                 return val
 
-        for col_name, dtype in df.dtypes.iteritems():
+        for col_name, dtype in df.dtypes.items():
             if str(dtype) == "category":
                 # XXXX: work around bug in to_json for categorical types
                 # https://github.com/pydata/pandas/issues/10778

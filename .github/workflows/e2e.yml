@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        python_version: [3.6, 3.7, 3.8, 3.9]
+        python_version: ["3.8", "3.9", "3.10", "3.11"]
 
     defaults:
       run:
@@ -36,9 +36,15 @@ jobs:
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate ipytablewidgets
-        conda install jupyterlab=3.0.11 -c conda-forge # required 4 galata
+        python -m pip install jupyterlab==3.6.1 # required 4 galata
         conda install yarn
         cd ui-tests/	
         yarn
         yarn run start-jlab:detached
         yarn run test
+      - name: Upload output file
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: cell-artifact
+          path: ui-tests/test-output/test/screenshots/end2end_cell_*.png

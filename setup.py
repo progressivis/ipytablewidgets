@@ -8,7 +8,6 @@ from jupyter_packaging import (
     install_npm,
     ensure_targets,
     combine_commands,
-    # get_version,
 )
 
 
@@ -16,7 +15,6 @@ here = osp.dirname(osp.abspath(__file__))
 
 npm_package_name = 'jupyter-tablewidgets'
 python_package_name = 'ipytablewidgets'
-# version = get_version(pjoin(python_package_name, '_version.py'))
 package_json = pjoin(here, 'js', 'package.json')
 with open(package_json) as f:
     version = json.load(f)['version']
