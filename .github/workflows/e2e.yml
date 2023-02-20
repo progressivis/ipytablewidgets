@@ -33,6 +33,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install jupyterlab==3.6.1
+        jupyter labextension disable "@jupyterlab/apputils-extension:announcements"
         python -m pip install .
     - name: Run tests
       run: |
