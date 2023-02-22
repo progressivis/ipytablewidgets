@@ -62,10 +62,10 @@ jobs:
       if: failure()
       run: |
         cd ui-tests
-        yarn test:update
+        yarn run test:update
     - name: Upload images
       if: failure()    
       uses: actions/upload-artifact@v3
       with:
         name: ipytables-updated-images
-        path: ui-tests/test-output/test/screenshots/end2end_cell_*.png
+        path: ui-tests/tests/end2end.test.ts-snapshots/end2end_cell_*.png
