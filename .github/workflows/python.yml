@@ -10,36 +10,29 @@ on:
 
 jobs:
   run:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest]
-        python_version: [3.6, 3.7, 3.8, 3.9]
+        python: ["3.7", "3.8", "3.10", "3.11"]
 
     defaults:
       run:
         shell: bash
 
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Setup conda
-      uses: conda-incubator/setup-miniconda@v2
+    - uses: actions/checkout@v3
+    - name: Setup Python ${{ matrix.python }}
+      uses: actions/setup-python@v2.3.1
       with:
-        channels: conda-forge, anaconda
-    - name: Create the conda environment
-      run: conda env create -q python=${{ matrix.python_version }} -f environment.yml
+        python-version: ${{ matrix.python }}
 
     - name: Run tests
       run: |
-        source /usr/share/miniconda/etc/profile.d/conda.sh
-        conda activate ipytablewidgets
+        python -m pip install pytest, pytest-cov
         coverage run -m pytest ipytablewidgets/tests -vv
 
     - name: Coverage
       run: |
-        source /usr/share/miniconda/etc/profile.d/conda.sh
-        conda activate ipytablewidgets      
         coverage report -m
