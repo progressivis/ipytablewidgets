@@ -30,7 +30,7 @@ jobs:
 
     - name: Run tests
       run: |
-        python -m pip install pytest, pytest-cov
+        python -m pip install pytest pytest-cov
         coverage run -m pytest ipytablewidgets/tests -vv
 
     - name: Coverage
