@@ -6,7 +6,6 @@ node_modules/*
 *.yml~
 *.sh~
 *.ini~
-*.lock
 *.*#
 # Byte-compiled / optimized / DLL files
 __pycache__/

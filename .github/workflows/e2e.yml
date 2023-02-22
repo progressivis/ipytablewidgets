@@ -36,7 +36,7 @@ jobs:
         python -m pip install jupyter-packaging
         python -m pip install jupyterlab==3.6.1
         pushd js
-        yarn
+        yarn --frozen-lockfile
         yarn run build
         popd
         jupyter labextension disable "@jupyterlab/apputils-extension:announcements"
@@ -47,7 +47,7 @@ jobs:
     - name: Start Jupyterlab
       run: |
         cd ui-tests/
-        yarn
+        yarn --frozen-lockfile
         yarn run build
         yarn playwright install chromium
         yarn run start:detached
