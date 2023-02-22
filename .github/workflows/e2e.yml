@@ -33,7 +33,7 @@ jobs:
       uses: actions/setup-node@v3
     - name: Install dependencies
       run: |
-        python -m pip install jupyterlab-packaging
+        python -m pip install jupyter-packaging
         python -m pip install jupyterlab==3.6.1
         pushd js
         yarn
