@@ -70,4 +70,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: ipytables-updated-images
-        path: ui-tests/tests
+        path: ui-tests/tests/end2end.test.ts-snapshots/
