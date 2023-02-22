@@ -21,6 +21,8 @@ jobs:
       run:
         shell: bash -l {0}
 
+
+
     steps:
     - uses: actions/checkout@v3
     - name: Setup Python ${{ matrix.python }}
@@ -40,25 +42,26 @@ jobs:
         jupyter labextension disable "@jupyterlab/apputils-extension:announcements"
         python -m pip install -e .
         jupyter labextension develop --overwrite .
+
+
     - name: Start Jupyterlab
       run: |
         cd ui-tests/
         yarn
         yarn run start:detached
-
-      - name: Wait for JupyterLab
-        uses: ifaxity/wait-on-action@v1
-        with:
-          resource: http-get://localhost:8888/api
-          timeout: 20000  
+    - name: Wait for JupyterLab
+      uses: ifaxity/wait-on-action@v1
+      with:
+        resource: http-get://localhost:8888/api
+        timeout: 20000  
     - name: Run tests
       run: |    
         yarn run test
     - name: Update images
       if: failure()
-        run: |
-          cd ui-tests
-          yarn test:update
+      run: |
+        cd ui-tests
+        yarn test:update
     - name: Upload images
       if: failure()    
       uses: actions/upload-artifact@v3
