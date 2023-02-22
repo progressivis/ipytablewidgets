@@ -26,4 +26,6 @@ jobs:
     - name: Run tests
       run: |
         cd js
+        yarn --frozen-lockfile
+        yarn run build
         yarn run test:ci
