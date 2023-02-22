@@ -31,81 +31,46 @@
      OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-import { galata, describe, test } from '@jupyterlab/galata';
+import { test } from '@jupyterlab/galata';
+
+import { expect } from '@playwright/test';
+
 import * as path from 'path';
 
-jest.setTimeout(100000);
-
-describe('End to end test', () => {
-  beforeAll(async () => {
-    await galata.resetUI();
-    galata.context.capturePrefix = 'end2end';
-  });
-
-  afterAll(async () => {
-    galata.context.capturePrefix = '';
-  });
-
-  test('Upload files to JupyterLab', async () => {
-    await galata.contents.moveDirectoryToServer(
-      path.resolve(__dirname, `./notebooks`),
-      'uploaded'
+test.describe('Widget Visual Regression', () => {
+  test.beforeEach(async ({ page, tmpPath }) => {
+    await page.contents.uploadDirectory(
+      path.resolve(__dirname, './notebooks'),
+      tmpPath
     );
-    expect(
-      await galata.contents.fileExists('uploaded/end2end.ipynb')
-    ).toBeTruthy();
+    await page.filebrowser.openDirectory(tmpPath);
   });
 
-  test('Refresh File Browser', async () => {
-    await galata.filebrowser.refresh();
-  });
-
-  test('Open directory uploaded', async () => {
-    await galata.filebrowser.openDirectory('uploaded');
-    expect(
-      await galata.filebrowser.isFileListedInBrowser('end2end.ipynb')
-    ).toBeTruthy();
-  });
-
-  test('Run notebook end2end.ipynb and capture cell outputs', async () => {
+  test('Run notebook end2end.ipynb and capture cell outputs', async ({
+    page,
+    tmpPath,
+  }) => {
     const notebook = 'end2end.ipynb';
-    await galata.notebook.open(notebook);
-    expect(await galata.notebook.isOpen(notebook)).toBeTruthy();
-    await galata.notebook.activate(notebook);
-    expect(await galata.notebook.isActive(notebook)).toBeTruthy();
+    await page.notebook.openByPath(`${tmpPath}/${notebook}`);
+    await page.notebook.activate(notebook);
 
-    let numCellImages = 0;
+    const captures = new Array<Buffer>();
+    const cellCount = await page.notebook.getCellCount();
 
-    const getCaptureImageName = (id: number): string => {
-      return `cell-${id}`;
-    };
-
-    await galata.notebook.runCellByCell({
+    await page.notebook.runCellByCell({
       onAfterCellRun: async (cellIndex: number) => {
-        const cell = await galata.notebook.getCellOutput(cellIndex);
-	console.log("CELL:", cell);
+        const cell = await page.notebook.getCellOutput(cellIndex);
         if (cell) {
-          if (
-            await galata.capture.screenshot(
-              getCaptureImageName(numCellImages),
-              cell
-            )
-          ) {
-            numCellImages++;
-          }
+          captures.push(await cell.screenshot());
         }
       },
     });
 
-    for (let c = 0; c < numCellImages; ++c) {
-      expect(
-        await galata.capture.compareScreenshot(getCaptureImageName(c))
-      ).toBe('same');
+    await page.notebook.save();
+
+    for (let i = 0; i < cellCount; i++) {
+      const image = `end2end-cell-${i}.png`;
+      expect(captures[i]).toMatchSnapshot(image);
     }
   });
-
-  test('Close notebook end2end.ipynb', async () => {
-    await galata.notebook.close(true);
-  });
-
 });

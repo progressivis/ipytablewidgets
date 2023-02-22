@@ -23,7 +23,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-
+<
     - name: Setup Python ${{ matrix.python }}
       uses: actions/setup-python@v2.3.1
       with:
@@ -32,18 +32,37 @@ jobs:
       uses: actions/setup-node@v3
     - name: Install dependencies
       run: |
+        python -m pip install jupyterlab-packaging
         python -m pip install jupyterlab==3.6.1
+        pushd js
+        yarn
+        yarn run build
+        popd
         jupyter labextension disable "@jupyterlab/apputils-extension:announcements"
-        python -m pip install .
-    - name: Run tests
+        python -m pip install -e .
+        jupyter labextension develop --overwrite .
+    - name: Start Jupyterlab
       run: |
         cd ui-tests/
         yarn
-        yarn run start-jlab:detached
+        yarn run start:detached
+
+      - name: Wait for JupyterLab
+        uses: ifaxity/wait-on-action@v1
+        with:
+          resource: http-get://localhost:8888/api
+          timeout: 20000  
+    - name: Run tests
+      run: |    
         yarn run test
-    - name: Upload output file
+    - name: Update images
       if: failure()
-      uses: actions/upload-artifact@v2
+        run: |
+          cd ui-tests
+          yarn test:update
+    - name: Upload images
+      if: failure()    
+      uses: actions/upload-artifact@v3
       with:
-        name: cell-artifact
+        name: ipytables-updated-images
         path: ui-tests/test-output/test/screenshots/end2end_cell_*.png
