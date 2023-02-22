@@ -49,6 +49,7 @@ jobs:
         cd ui-tests/
         yarn
         yarn run build
+        yarn playwright install chromium
         yarn run start:detached
     - name: Wait for JupyterLab
       uses: ifaxity/wait-on-action@v1
