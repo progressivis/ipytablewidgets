@@ -48,7 +48,7 @@ jobs:
       run: |
         cd ui-tests/
         yarn
-	yarn run build
+        yarn run build
         yarn run start:detached
     - name: Wait for JupyterLab
       uses: ifaxity/wait-on-action@v1
