@@ -1,6 +1,6 @@
 {
   "name": "jupyter-tablewidgets",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "description": "A set of widgets to help facilitate reuse of large tables across widgets",
   "repository": {
     "type": "git",
@@ -27,7 +27,7 @@
     "test:firefox": "karma start --browsers=Firefox karma.conf.js",
     "watch": "webpack --mode development --watch"
   },
-    "dependencies": {
+  "dependencies": {
     "@jupyter-widgets/base": "^2 || ^3 || ^4 || ^5 || ^6",
     "lz4js": "^0.2.0",
     "ndarray": "^1.0.19",
