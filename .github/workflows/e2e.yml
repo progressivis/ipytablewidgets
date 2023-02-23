@@ -14,6 +14,8 @@ jobs:
 
     strategy:
       fail-fast: false
+      matrix:
+        python: ["3.7", "3.8", "3.9", "3.10", "3.11"]
 
     defaults:
       run:
@@ -26,7 +28,7 @@ jobs:
     - name: Setup Python ${{ matrix.python }}
       uses: actions/setup-python@v2.3.1
       with:
-        python-version: "3.11"
+        python-version: ${{ matrix.python }}
     - name: Setup Node
       uses: actions/setup-node@v3
     - name: Install dependencies
