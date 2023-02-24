@@ -48,7 +48,6 @@ jobs:
       run: |
         cd ui-tests/
         yarn --frozen-lockfile
-        yarn run build
         yarn playwright install chromium
         yarn run start:detached
     - name: Wait for JupyterLab
