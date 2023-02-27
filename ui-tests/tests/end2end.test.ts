@@ -1,7 +1,8 @@
 // Initial software, Jean-Daniel Fekete, Christian Poli, Copyright (c) Inria, BSD 3-Clause License, 2021, v0.1.0
 
 /*
- NB: Parts of this file adapted  from Jupyter Widgets (https://github.com/jupyter-widgets/ipywidgets/blob/master/ui-tests/tests/widgets.test.ts)
+This file contains substantial portions of https://github.com/jupyter-widgets/ipywidgets/blob/7325e5952efb71bd69692b2d7ed815646c0ac521/ui-tests/tests/widgets.test.ts, which has the following license:
+
      Copyright (c) 2015 Project Jupyter Contributors
      All rights reserved.
 
