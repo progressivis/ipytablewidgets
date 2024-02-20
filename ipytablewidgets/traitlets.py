@@ -16,7 +16,7 @@ class TableType(TraitType):
 
     def validate(self, obj, value):
         assert value is None or isinstance(value, SourceAdapter)
-        return super().validate(obj, value)
+
 
     def set(self, obj, value):
         new_value = self._validate(obj, value)
