@@ -106,7 +106,7 @@ class PandasAdapter(SourceAdapter):
             elif dtype == object:
                 # Convert numpy arrays saved as objects to lists
                 # Arrays are not JSON serializable
-                col = df[col_name].apply(to_list_if_array, convert_dtype=False)
+                col = df[col_name].astype(object).apply(to_list_if_array, convert_dtype=False)
                 self.column[col_name] = col.where(col.notnull(), None)
             else:
                 self.column[col_name] = df[col_name]  # TODO check more

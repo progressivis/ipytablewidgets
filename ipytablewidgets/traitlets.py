@@ -1,11 +1,10 @@
 # Initial software, Jean-Daniel Fekete, Christian Poli, Copyright (c) Inria, BSD 3-Clause License, 2021
 
-from traitlets import Undefined
-from traittypes import SciType
+from traitlets import TraitType, Undefined
 from . import SourceAdapter
 
 
-class TableType(SciType):
+class TableType(TraitType):
 
     """
     A SourceAdapter instance trait type.
