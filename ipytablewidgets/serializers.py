@@ -18,13 +18,13 @@ def array_to_json(value):
     elif value.dtype.name == "uint64":
         value = value.astype("uint32", order="C")
     elif not value.flags["C_CONTIGUOUS"] and (
-        np.issubsctype(value.dtype, np.integer)
-        or np.issubsctype(value.dtype, np.floating)
+        np.issubdtype(value.dtype, np.integer)
+        or np.issubdtype(value.dtype, np.floating)
     ):
         value = np.ascontiguousarray(value)
-    elif np.issubsctype(value.dtype, str):
+    elif np.issubdtype(value.dtype, str):
         value = value.tolist()
-    elif np.issubsctype(value.dtype, object):
+    elif np.issubdtype(value.dtype, object):
         value = list(map(str, value))
     if isinstance(value, list):
         return {"shape": (len(value),), "dtype": "str", "buffer": value}
