@@ -67,7 +67,7 @@ jobs:
         yarn run test:update
     - name: Upload images
       if: failure()    
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ipytables-updated-images
         path: ui-tests/tests/end2end.test.ts-snapshots/
