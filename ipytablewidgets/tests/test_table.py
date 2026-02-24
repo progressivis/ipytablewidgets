@@ -75,7 +75,7 @@ def test_table_translate():
     arr_B = pd.Series(data, dtype="boolean")
     arr_B[3] = pd.NA  # Add NA at index 3
     # Convert datetime[...] into objects (str or None)
-    data = pd.date_range("2018-01-01", periods=len(list_), freq="H")
+    data = pd.date_range("2018-01-01", periods=len(list_), freq="h")
     arr_D = pd.Series(data)
     arr_D[4] = pd.NA  # Add NA at index 4
     # Convert nullable integer datatypes
