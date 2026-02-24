@@ -34,7 +34,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install jupyter-packaging
-        python -m pip install jupyterlab==3.6.1
+        python -m pip install jupyterlab==3.6.1 setuptools"<=79"
         python -m pip install pyarrow  # avoid warnings from pandas
         pushd js
         yarn --frozen-lockfile
