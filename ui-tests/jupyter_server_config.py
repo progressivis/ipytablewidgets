@@ -1,3 +1,4 @@
+"""
 from tempfile import mkdtemp
 
 c.ServerApp.port = 8888
@@ -8,3 +9,7 @@ c.ServerApp.password = ""
 c.ServerApp.disable_check_xsrf = True
 
 c.LabApp.expose_app_in_browser = True
+"""
+from jupyterlab.galata import configure_jupyter_server
+
+configure_jupyter_server(c)
