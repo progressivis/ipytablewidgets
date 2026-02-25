@@ -716,7 +716,7 @@
     react "^18.2.0"
     regexp-match-indices "^1.0.2"
 
-"@jupyterlab/galata@^5.4.0":
+"@jupyterlab/galata@^5.5.5":
   version "5.5.5"
   resolved "https://registry.yarnpkg.com/@jupyterlab/galata/-/galata-5.5.5.tgz#b55d62e287f2793d361a12483b2981f24acc07fe"
   integrity sha512-BjuTY8GxjPtxHtKBiX1aNGE+fF8jn4FK2z8I30u8LoKKXO1Rrh7Ly7SAVZ1sc+YzeUSCujc5WVqtA/nLJ/fUHg==
