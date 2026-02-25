@@ -5,7 +5,7 @@ import { decompress } from "./compression";
 type NdArray =  ndarray.NdArray;
 
 import {
-  WidgetModel, ManagerBase
+  WidgetModel, IWidgetManager
 } from '@jupyter-widgets/base';
 
 export
@@ -54,7 +54,7 @@ interface ISendSerializedTable {
 }
 
 export
-function JSONToTable(obj: IReceivedSerializedTable | null, manager?: ManagerBase<any>): ISendSerializedTable | null {
+function JSONToTable(obj: IReceivedSerializedTable | null, manager?: IWidgetManager): ISendSerializedTable | null {
   if (obj === null) {
     return null;
   }

@@ -13,10 +13,11 @@
     "url": "https://github.com/progressivis/ipytablewidgets/issues"
   },
   "homepage": "https://github.com/progressivis/ipytablewidgets/#readme",
-  "scripts": {
+    "scripts": {
+    "clean": "rimraf dist/ && rimraf ../ipytablewidgets/labextension/ && rimraf ../ipytablewidgets/static",
     "format": "prettier --write 'src/*.ts'",
     "lint": "prettier --check 'src/*.ts'",
-    "build": "jlpm run build:lib && webpack --mode production && jlpm run build:labx",
+    "build": "yarn run build:lib && webpack --mode production && yarn run build:labx",
     "build:nb": "webpack --mode production",
     "build:labx": "jupyter labextension build .",
     "build:lib": "tsc",
@@ -35,7 +36,7 @@
     "pako": "^2.0.3"
   },
   "devDependencies": {
-    "@jupyterlab/builder": "^3.1.11",
+    "@jupyterlab/builder": "^4.5.5",
     "@types/chai": "^4.2.21",
     "@types/mocha": "^9.0.0",
     "@types/ndarray": "^1.0.9",
