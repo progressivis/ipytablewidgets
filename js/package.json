@@ -1,6 +1,6 @@
 {
   "name": "jupyter-tablewidgets",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "A set of widgets to help facilitate reuse of large tables across widgets",
   "repository": {
     "type": "git",
@@ -13,7 +13,7 @@
     "url": "https://github.com/progressivis/ipytablewidgets/issues"
   },
   "homepage": "https://github.com/progressivis/ipytablewidgets/#readme",
-    "scripts": {
+  "scripts": {
     "clean": "rimraf dist/ && rimraf ../ipytablewidgets/labextension/ && rimraf ../ipytablewidgets/static",
     "format": "prettier --write 'src/*.ts'",
     "lint": "prettier --check 'src/*.ts'",
